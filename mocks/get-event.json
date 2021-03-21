@@ -1,3 +1,5 @@
 {
-    "body": "{\"license\":\"G52352\"}"
+  "pathParameters": {
+    "id": "G52352"
+  }
 }

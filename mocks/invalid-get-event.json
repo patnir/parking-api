@@ -1,3 +1,5 @@
 {
-    "body": "{\"license\":\"invalid\"}"
+  "pathParameters": {
+    "id": "invalid"
+  }
 }

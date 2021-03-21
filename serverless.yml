@@ -51,20 +51,24 @@ functions:
     handler: get.main
     events:
       - http:
-          path: parking
+          path: parking/{id}
           method: get
+          cors: true
+          authorizer: aws_iam
   list:
     handler: list.main
     events:
       - http:
-          path: parkings
+          path: parking
           method: get
   delete:
     handler: delete.main
     events:
       - http:
-          path: parking
+          path: parking/{id}
           method: delete
+          cors: true
+          authorizer: aws_iam
 
 resources:
   Resources:
