@@ -38,21 +38,33 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
         - dynamodb:DescribeTable
-      Resource: arn:aws:dynamodb:us-west-2:*:table/ParkingTable"
+      Resource: arn:aws:dynamodb:us-west-2:*:table/ParkingTable
 
 functions:
   create:
     handler: create.main
     events:
       - http:
-          path: notes
+          path: parking
           method: post
   get:
     handler: get.main
     events:
       - http:
-          path: notes
-          method: post
+          path: parking
+          method: get
+  list:
+    handler: list.main
+    events:
+      - http:
+          path: parkings
+          method: get
+  delete:
+    handler: delete.main
+    events:
+      - http:
+          path: parking
+          method: delete
 
 resources:
   Resources:
