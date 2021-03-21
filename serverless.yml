@@ -46,6 +46,7 @@ functions:
     events:
       - http:
           path: parking
+          cors: true
           method: post
   get:
     handler: get.main
@@ -60,6 +61,7 @@ functions:
     events:
       - http:
           path: parking
+          cors: true
           method: get
   delete:
     handler: delete.main
