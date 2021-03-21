@@ -22,25 +22,46 @@ provider:
   #
   #environment:
   #  SAMPLE_ENV_VAR: ${env:SAMPLE_ENV_VAR}
+  # 'iamRoleStatements' defines the permission policy for the Lambda function.
+  # In this case Lambda functions are granted with permissions to access DynamoDB.
+
+  environment:
+    tableName: ParkingTable
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Scan
+        - dynamodb:Query
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - dynamodb:DescribeTable
+      Resource: arn:aws:dynamodb:us-west-2:*:table/ParkingTable"
 
 functions:
-  hello:
-    handler: handler.hello
+  create:
+    handler: create.main
     events:
       - http:
-          path: hello
-          method: get
+          path: notes
+          method: post
+  get:
+    handler: get.main
+    events:
+      - http:
+          path: notes
+          method: post
 
-resources: # CloudFormation template syntax from here on.
+resources:
   Resources:
     usersTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: parkingTable
+        TableName: ParkingTable
         AttributeDefinitions:
           - AttributeName: license
-            AttributeType: S
-          - AttributeName: json_object
             AttributeType: S
         KeySchema:
           - AttributeName: license
