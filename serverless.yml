@@ -55,7 +55,6 @@ functions:
           path: parking/{id}
           method: get
           cors: true
-          authorizer: aws_iam
   list:
     handler: list.main
     events:
@@ -70,7 +69,6 @@ functions:
           path: parking/{id}
           method: delete
           cors: true
-          authorizer: aws_iam
 
 resources:
   Resources:
